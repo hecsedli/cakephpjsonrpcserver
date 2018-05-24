@@ -1,10 +1,13 @@
-# cakephpjsonrpcserver
 CakePHP 3.x JSON-RPC server
+
+Original idea: James Watts https://github.com/jameswatts/cake-jsonrpc
+
 
 Requirements
 ------------
 
-* CakePHP 3+
+* CakePHP 3.6+
+* PHP 5.6+
 
 Installation
 ------------
