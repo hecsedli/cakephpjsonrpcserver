@@ -1,0 +1,29 @@
+{
+  "name": "hecsedli/cakephpjsonrpcserver",
+  "description": "CakePHP 3.x JSON-RPC server",
+  "type": "cakephp-plugin",
+  "keywords": ["cakephp", "json", "plugin"],
+  "homepage": "https://github.com/hecsedli/cakephpjsonrpcserver",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Csipke Ferenc",
+      "email": "csipke.ferenc@gmail.com",
+      "homepage": "",
+      "role": "Author"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.16",
+    "cakephp/cakephp": "~3.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "JSONRPCServer\\": "src"
+    }
+  }
+}
+
