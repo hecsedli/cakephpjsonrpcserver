@@ -9,5 +9,5 @@ Plugin::load('JSONRPCServer', ['bootstrap' => true]);
 
 ```php
 // Controller
-public $components = ["JSONRPCServer.JsonrpcServer" => ["listen" => ["index"]]];
+public $components = ["JSONRPCServer.JsonrpcServer"];
 ```

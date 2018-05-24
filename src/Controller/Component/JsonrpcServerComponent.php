@@ -8,33 +8,13 @@ use Cake\Core\Exception\Exception;
 
 class JsonrpcServerComponent extends Component {
 	
-/**
- * Determines the controllers action on which the server will listen.
- *
- * @var mixed
- */
-	public $listen = null;
-	
-/**
- * The current controller object.
- *
- * @var Controller
- */
 	protected $_controller = null;
 	
-/**
- * The JSON-RPC protocol version.
- *
- * @var string
- */
 	protected $_version = '2.0';
-	
-		
 	
 	public function __construct(ComponentRegistry $registry, array $config = []) {
         parent::__construct($registry, $config);
 		$this->_controller = $registry->getController();
-		$this->listen = $config['listen'];
 		$this->_controller->disableAutoRender();
 	}
 	
@@ -42,25 +22,24 @@ class JsonrpcServerComponent extends Component {
 		$controller = $this->_controller;
 		$action = strtolower($controller->request->getParam('action'));
 		
-		if (!empty($this->listen) && ((is_string($this->listen) && $this->listen == $action) || (is_array($this->listen) && in_array($action, $this->listen)))) {
+		if ($action == 'index') {
 			if ($controller->request->is('post')) {
-				$controller->response->statusCode(200);
-				$controller->response->header('Content-Type', 'application/json');
+				$controller->response = $controller->response->withStatus(200)->withHeader('Content-Type', 'application/json');
 				$requests = $this->_processJsonRequest();
 				
 				if (is_object($requests)) {
-					$controller->response->body(json_encode($this->_parseJsonRequest($requests)));
+					$controller->response = $controller->response->withStringBody(json_encode($this->_parseJsonRequest($requests)));
 				} else if (is_array($requests)) {
 					$responses = array();
 					for ($i = 0; $i < count($requests); $i++) {
 						$responses[] = $this->_parseJsonRequest($requests[$i]);
 					}
-					$controller->response->body(json_encode($responses));
+					$controller->response = $controller->response->withStringBody(json_encode($responses));
 				} else {
-					$controller->response->body(json_encode($this->_parseJsonRequest($requests)));
+					$controller->response = $controller->response->withStringBody(json_encode($this->_parseJsonRequest($requests)));
 				}
 			} else {
-				$controller->response->statusCode(405);
+				$controller->response = $controller->response->withStatus(405);
 			}
 		}
 	}

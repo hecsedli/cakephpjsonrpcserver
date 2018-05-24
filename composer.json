@@ -11,11 +11,17 @@
       "email": "csipke.ferenc@gmail.com",
       "homepage": "",
       "role": "Author"
-    }
+    },
+    {
+		"name": "James Watts",
+		"email": "james.watts@cakephp.org",
+		"homepage": "http://my.cakephp.org/user/jameswatts",
+		"role": "Author"
+	}
   ],
   "require": {
     "php": ">=5.4.16",
-    "cakephp/cakephp": "~3.0"
+    "cakephp/cakephp": "~3.6"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.1"
