@@ -35,7 +35,7 @@ class JsonrpcServerComponent extends Component {
         parent::__construct($registry, $config);
 		$this->_controller = $registry->getController();
 		$this->listen = $config['listen'];
-		$this->_controller->autoRender = false;
+		$this->_controller->disableAutoRender();
 	}
 	
 	public function startup(Event $event) {
